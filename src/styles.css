@@ -1,0 +1,122 @@
+@import url("https://fonts.googleapis.com/css?family=Tangerine");
+@import url("https://fonts.googleapis.com/css2?family=Parisienne&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Aref+Ruqaa+Ink:wght@400;700&display=swap");
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+.about1 {
+  height: 540px;
+  text-align: center;
+}
+
+.background {
+  height: 540px;
+  position: absolute;
+}
+
+.background img {
+  height: 540px;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.foreground {
+  position: relative;
+  background-color: #00000090;
+}
+
+.fg-text {
+  color: white;
+  text-shadow: 4px 4px 4px var(--bs-dark), 0 0 6px var(--bs-danger);
+  font-weight: bold;
+  position: relative;
+  top: 20%;
+  transform: translate(0, -20%);
+}
+
+.t1 {
+  font-family: "Tangerine", serif;
+  font-size: 8vw;
+  transform: translate(0, 15%);
+}
+
+.t2 {
+  font-family: "Aref Ruqaa Ink", serif;
+  font-size: 2vw;
+  transform: translate(0, -15%);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--bs-warning);
+  box-shadow: 0 0 0 0.25rem rgb(255 193 7 / 40%);
+}
+
+.form-check-input:focus {
+  background-color: var(--bs-warning);
+  border-color: var(--bs-warning);
+  box-shadow: 0 0 0 0.25rem rgb(255 193 7 / 40%);
+}
+
+.form-check-input:checked {
+  background-color: var(--bs-warning);
+  border-color: var(--bs-warning);
+}
+
+@media only screen and (max-width: 450px) {
+  .t1 {
+    font-size: 14vw;
+  }
+
+  .t2 {
+    font-size: 6vw;
+  }
+}
+
+.itemCard:hover {
+  /* margin: 1px !important; */
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 30%);
+}
+
+.itemSelected {
+  border: 3px solid;
+  margin: 1px !important;
+  border-color: var(--bs-warning) !important;
+}
+
+.image {
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+
+.btn-close:focus {
+  border-color: var(--bs-warning);
+  box-shadow: 0 0 0 0.25rem rgb(255 193 7 / 40%);
+}
+
+.t3 {
+  color: var(--bs-warning);
+  text-shadow: 4px 4px 4px var(--bs-dark), 0 0 6px var(--bs-danger);
+  font-weight: bold;
+  font-family: "Tangerine", serif;
+  font-size: 8vw;
+}
+@media only screen and (max-width: 450px) {
+  .t3 {
+    font-size: 14vw;
+  }
+}
+
+.titleFont {
+  font-family: "Tangerine", serif;
+}
+
+.subtitleFont {
+  font-family: "Aref Ruqaa Ink", serif;
+}

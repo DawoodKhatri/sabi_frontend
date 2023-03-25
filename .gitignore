@@ -1,0 +1,13 @@
+# Add Files To Ignore
+
+# Node Modules
+node_modules
+
+# Build
+build
+
+# Package Lock
+package-lock.json
+
+# Env
+.env*

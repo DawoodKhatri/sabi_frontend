@@ -1,0 +1,66 @@
+.section {
+  height: 480px;
+}
+
+.background {
+  height: 480px;
+}
+
+.background img {
+  height: 480px;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.foreground {
+  background-color: #00000090;
+}
+
+.text {
+  color: white;
+  text-shadow: 4px 4px 4px var(--bs-dark), 0 0 6px var(--bs-danger);
+  font-weight: bold;
+  position: relative;
+  top: 20%;
+  transform: translate(0, -20%);
+}
+
+.title {
+  font-family: "Tangerine", serif;
+  font-size: 8vw;
+  transform: translate(0, 15%);
+}
+
+.subtitle {
+  font-family: "Aref Ruqaa Ink", serif;
+  font-size: 2vw;
+  transform: translate(0, -15%);
+}
+
+@media only screen and (max-width: 768px) {
+  .title {
+    font-size: 12vw;
+  }
+
+  .subtitle {
+    font-size: 4vw;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .title {
+    font-size: 14vw;
+  }
+
+  .subtitle {
+    font-size: 6vw;
+  }
+}
+
+.titleFont {
+  font-family: "Tangerine", serif;
+}
+
+.subtitleFont {
+  font-family: "Aref Ruqaa Ink", serif;
+}
