@@ -1,12 +1,12 @@
 const httpRequest = async (url, method, params = {}) => {
-  
   url = process.env.REACT_APP_API + url;
 
   let options = {
+    credentials: "include",
     method,
 
     headers: {
-      "Content-Type": "application/json;charset=utf-8",
+      "Content-Type": "application/json",
     },
   };
 
