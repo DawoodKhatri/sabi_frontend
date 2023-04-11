@@ -22,7 +22,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (auth && !details.isBusiness) {
+    if (auth && !details?.isBusiness) {
       dispatch(getCart());
     }
   }, [auth]);

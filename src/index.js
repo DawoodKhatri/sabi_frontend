@@ -19,11 +19,11 @@ const root = createRoot(rootElement);
 root.render(
   <StrictMode>
     <Provider store={store}>
-      <AuthProvider>
-        <LoadingProvider>
+      <LoadingProvider>
+        <AuthProvider>
           <App />
-        </LoadingProvider>
-      </AuthProvider>
+        </AuthProvider>
+      </LoadingProvider>
     </Provider>
   </StrictMode>
 );
