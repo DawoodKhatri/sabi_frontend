@@ -5,7 +5,11 @@ import vegDot from "../../assets/svg/vegDot.svg";
 import nonVegDot from "../../assets/svg/nonVegDot.svg";
 import styles from "../../styles/cards.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, reduceFromCart } from "../../redux/slices/cartSlice";
+import {
+  addToCart,
+  reduceFromCart,
+  removeFromCart,
+} from "../../redux/slices/cartSlice";
 
 const ProductCard = ({
   _id,
@@ -80,11 +84,11 @@ const ProductCard = ({
           <span>({reviews.length} reviews)</span>
         </p>
         <p className="m-1 my-2 d-flex align-items-center">
-          <span className="col-6 text-truncate" title={cuisine}>
+          <span className="col-4 text-truncate" title={cuisine}>
             {cuisine}
           </span>
           {auth && !details.isBusiness && (
-            <span className="col-6 text-end">
+            <span className="col-8 text-end">
               {quantity > 0 ? (
                 <>
                   <button
@@ -99,12 +103,20 @@ const ProductCard = ({
                     {quantity}
                   </button>
                   <button
-                    className="btn btn-sm btn-red py-0 px-1 mx-1"
+                    className="btn btn-sm btn-orange text-white py-0 px-1 mx-1"
                     onClick={() => {
                       dispatch(reduceFromCart(_id));
                     }}
                   >
                     <i className="bi bi-dash-lg"></i>
+                  </button>
+                  <button
+                    className="btn btn-sm btn-red py-0 px-1 mx-1"
+                    onClick={() => {
+                      dispatch(removeFromCart(_id));
+                    }}
+                  >
+                    <i className="bi bi-trash"></i>
                   </button>
                 </>
               ) : (
