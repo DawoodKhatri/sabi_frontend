@@ -23,10 +23,6 @@ const Navbar = () => {
     );
   };
 
-  useEffect(() => {
-    console.log(details.isBusiness);
-  }, [auth]);
-
   return (
     <>
       <nav className="navbar bg-white">

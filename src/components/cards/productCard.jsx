@@ -93,7 +93,7 @@ const ProductCard = ({
                       dispatch(addToCart(_id));
                     }}
                   >
-                    <i class="bi bi-plus-lg"></i>
+                    <i className="bi bi-plus-lg"></i>
                   </button>
                   <button className="btn btn-sm border border-yellow py-0 px-2 mx-1">
                     {quantity}
@@ -104,7 +104,7 @@ const ProductCard = ({
                       dispatch(reduceFromCart(_id));
                     }}
                   >
-                    <i class="bi bi-dash-lg"></i>
+                    <i className="bi bi-dash-lg"></i>
                   </button>
                 </>
               ) : (

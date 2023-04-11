@@ -4,9 +4,8 @@ import { Loading } from "../components";
 
 const LoadingProvider = ({ children }) => {
   const { isLoading } = useSelector((state) => state.common);
-  console.log(isLoading);
   return (
-    <div className="relative">
+    <div className="relative min-vh-100">
       {isLoading && <Loading />}
       {children}
     </div>

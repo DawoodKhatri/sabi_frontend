@@ -1,3 +1,6 @@
+import { loading } from "../redux/slices/commonSlice";
+import { dispatch } from "../redux/store";
+
 const httpRequest = async (url, method, params = {}) => {
   url = process.env.REACT_APP_API + url;
 
@@ -22,11 +25,11 @@ const httpRequest = async (url, method, params = {}) => {
       break;
   }
 
-  return await (
-    await fetch(url, {
-      ...options,
-    })
-  ).json();
+  dispatch(loading(true));
+  const data = await fetch(url, options);
+  const response = await data.json();
+  dispatch(loading(false));
+  return response;
 };
 
 export default httpRequest;
