@@ -26,31 +26,39 @@ const HomeNav = () => {
     <>
       <nav className="navbar">
         <div className="container-fluid ">
-          <h3 className={`${styles.subtitleFont} text-warning px-3`} href="/">
+          <h2
+            className={`${styles.subtitleFont} text-yellow px-3 fw-bold`}
+            href="/"
+          >
             SABI
-          </h3>
+          </h2>
 
           <div className="py-3">
             {auth ? (
               <>
                 <Link to="/dashboard">
-                  <button className="btn btn-outline-warning mx-2">
-                    Dashboard
+                  <button className="btn btn-outline-yellow mx-2">
+                    <i className="bi bi-person"></i>
+                  </button>
+                </Link>
+                <Link to="/cart">
+                  <button className="btn btn-outline-yellow mx-2">
+                    <i className="bi bi-cart"></i>
                   </button>
                 </Link>
                 <button className="btn btn-danger mx-2" onClick={logout}>
-                  Log out
+                  <i className="bi bi-box-arrow-right"></i>
                 </button>
               </>
             ) : (
               <>
                 <Link to="/login">
-                  <button className="btn btn-outline-warning mx-2">
+                  <button className="btn btn-outline-yellow mx-2">
                     Log in
                   </button>
                 </Link>
                 <Link to="/register">
-                  <button className="btn btn-outline-warning mx-2">
+                  <button className="btn btn-outline-yellow mx-2">
                     Sign up
                   </button>
                 </Link>

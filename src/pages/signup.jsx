@@ -56,21 +56,20 @@ const Signup = () => {
   }, [auth]);
   return (
     <div
-      className="container-fluid min-vh-100 p-2 d-flex"
-      style={{ backgroundColor: "#eee" }}
+      className="container-fluid min-vh-100 p-2 d-flex bg-grey"
     >
       <div className="card col-12 col-sm-8 col-md-6 col-xl-4 rounded rounded-4 text-center m-auto">
         <div className="card-header">
           <p className="card-title display-6 fw-normal py-3">Sign Up as</p>
           <ul className="nav nav-pills card-header-pills p-2">
             <li
-              className="btn btn-outline-warning rounded rounded-3 px-3 mx-auto active"
+              className="btn btn-outline-yellow rounded rounded-3 px-3 mx-auto active"
               onClick={handleRestoCust}
             >
               Customer
             </li>
             <li
-              className="btn btn-outline-warning rounded rounded-3 px-3 mx-auto"
+              className="btn btn-outline-yellow rounded rounded-3 px-3 mx-auto"
               onClick={handleRestoCust}
             >
               Restaurant
@@ -121,7 +120,7 @@ const Signup = () => {
               </div>
             )}
             <div className="mt-4 mb-2 text-center">
-              <button className="btn btn-warning" onClick={register}>
+              <button className="btn btn-yellow" onClick={register}>
                 Create Account
               </button>
             </div>

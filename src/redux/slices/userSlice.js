@@ -61,7 +61,7 @@ const userAuth =
 const userLogin = (data, onSuccess, onError) => async (dispatch) => {
   try {
     dispatch(loading(true));
-    httpRequest(`/api/user/login`, "POST", data).then(async (response) => {
+    httpRequest(`/api/user/login`, "POST", data).then(async (response, headers) => {
       dispatch(loading(false));
       if (response.success) {
         dispatch(userAuth(onSuccess, onError));
@@ -76,7 +76,7 @@ const userLogin = (data, onSuccess, onError) => async (dispatch) => {
 
 const userLogout = () => async (dispatch) => {
   dispatch(loading(true));
-  httpRequest(`/api/user/logout`, "GET").then(async (response) => {
+  httpRequest(`/api/user/logout`, "POST").then(async (response) => {
     dispatch(loading(false));
     if (response.success) {
       await dispatch(logout());

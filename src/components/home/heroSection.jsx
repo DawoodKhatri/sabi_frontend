@@ -12,7 +12,7 @@ const HeroSection = () => {
         </div>
         <div className={`${styles.foreground} position-relative w-100 h-100`}>
           <HomeNav />
-          <div className={`${styles.text} text-warning`}>
+          <div className={`${styles.text} text-yellow`}>
             <p className={`${styles.title} m-0 p-0`}>Welcome to SABI</p>
             <p className={`${styles.subtitle} m-0 p-0`}>Order Now, Eat Later</p>
           </div>

@@ -14,13 +14,13 @@ const Restaurants = () => {
   return (
     <>
     <Navbar/>
-    <div className="px-3 py-5">
+    <div className="px-3 py-5 bg-grey">
       <div className="d-flex justify-content-between px-4">
-        <p className="mx-3 my-auto text-warning fw-semibold fs-3">
+        <p className="mx-3 my-auto text-yellow fw-semibold fs-3">
           Top Restaurants
         </p>
       </div>
-      <div className="mx-3 bg-warning" style={{ height: "2px" }}></div>
+      <div className="mx-3 bg-yellow" style={{ height: "2px" }}></div>
       <div className="px-4 py-3">
         <div
           className="row"

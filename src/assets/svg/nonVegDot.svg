@@ -1,0 +1,19 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="20px"
+  height="20px"
+  viewBox="0 0 20 20"
+>
+  <rect
+    id="Rectangle"
+    stroke="#D40000"
+    stroke-width="1.5"
+    fill="transparent"
+    x="1.5"
+    y="1.5"
+    width="17"
+    height="17"
+  />
+  <circle fill="#D40000" cx="10" cy="10" r="5" />
+</svg>

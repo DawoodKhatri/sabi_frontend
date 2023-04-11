@@ -1,3 +1,4 @@
+import LoadingProvider from "./loading.provider";
 import AuthProvider from "./auth.provider";
 
-export {AuthProvider}
+export { LoadingProvider, AuthProvider };

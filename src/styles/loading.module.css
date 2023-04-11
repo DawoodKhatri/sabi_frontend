@@ -1,0 +1,9 @@
+.main {
+    background-color: #eeeeee77;
+    z-index: 1;
+}
+
+.spinner {
+    width: 100px;
+    height: 100px;
+}

@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { userLogout } from "../../redux/slices/userSlice";
 import styles from "../../styles/home.module.css";
+import { useEffect } from "react";
 
 const Navbar = () => {
-  const auth = useSelector((state) => state.user.auth);
+  const { auth, details } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -22,40 +23,54 @@ const Navbar = () => {
     );
   };
 
+  useEffect(() => {
+    console.log(details.isBusiness);
+  }, [auth]);
+
   return (
     <>
-      <nav className="navbar bg-warning">
+      <nav className="navbar bg-white">
         <div className="container-fluid ">
-          <h3 className={`${styles.subtitleFont} text-dark px-3`} href="/">
+          <h2
+            className={`${styles.subtitleFont} text-yellow px-3 fw-bold`}
+            href="/"
+          >
             SABI
-          </h3>
+          </h2>
 
           <div className="py-1">
-          <Link to="/">
-                  <button className="btn btn-outline-dark mx-2">
-                    Home
-                  </button>
-                </Link>
+            <Link to="/">
+              <button className="btn btn-outline-yellow mx-2">Home</button>
+            </Link>
             {auth ? (
               <>
                 <Link to="/dashboard">
-                  <button className="btn btn-outline-dark mx-2">
-                    Dashboard
+                  <button className="btn btn-outline-yellow mx-2">
+                    <i className="bi bi-person"></i>
                   </button>
                 </Link>
+                {details.isBusiness ? (
+                  <></>
+                ) : (
+                  <Link to="/cart">
+                    <button className="btn btn-outline-yellow mx-2">
+                      <i className="bi bi-cart"></i>
+                    </button>
+                  </Link>
+                )}
                 <button className="btn btn-danger mx-2" onClick={logout}>
-                  Log out
+                  <i className="bi bi-box-arrow-right"></i>
                 </button>
               </>
             ) : (
               <>
                 <Link to="/login">
-                  <button className="btn btn-outline-dark mx-2">
+                  <button className="btn btn-outline-yellow mx-2">
                     Log in
                   </button>
                 </Link>
                 <Link to="/register">
-                  <button className="btn btn-outline-dark mx-2">
+                  <button className="btn btn-outline-yellow mx-2">
                     Sign up
                   </button>
                 </Link>

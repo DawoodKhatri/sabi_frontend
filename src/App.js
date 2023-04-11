@@ -5,8 +5,15 @@
 // import NewBooking from "./Components/Customer/NewBooking";
 // import RestaurantsPage from "./Components/RestaurantsPage";
 
-import { Navbar } from "./components";
-import { Dashboard, Home, Login, Restaurants, Signup } from "./pages";
+import {
+  Cart,
+  Dashboard,
+  Home,
+  Login,
+  Restaurant,
+  Restaurants,
+  Signup,
+} from "./pages";
 
 import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -27,10 +34,12 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Signup />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/restaurants" element={<Restaurants />} />
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/register" element={<Signup/>}/>
-        <Route path="/dashboard" element={<Dashboard/>}/>
+        <Route path="/restaurant/:id" element={<Restaurant />} />
         {/* <Route path="/signup" element={<Signup update={setData} />} />
         <Route path="/login" element={<Login update={setData} />} />
         <Route

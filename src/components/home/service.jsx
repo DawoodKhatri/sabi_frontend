@@ -8,7 +8,7 @@ import {ServiceCard} from "../index";
 const HomeService = () => {
   return (
     <>
-      <div className="container-fluid text-center bg-warning py-4">
+      <div className="container-fluid text-center bg-yellow py-4">
         <div className="row justify-content-center">
           <ServiceCard
             image={restaurant}

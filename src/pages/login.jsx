@@ -39,8 +39,7 @@ const Login = () => {
 
   return (
     <div
-      className="container-fluid min-vh-100 p-2 d-flex"
-      style={{ backgroundColor: "#eee" }}
+      className="container-fluid min-vh-100 p-2 d-flex bg-grey"
     >
       <div className="card col-12 col-sm-8 col-md-6 col-xl-4 rounded rounded-4 text-center m-auto">
         <div className="card-header">
@@ -72,7 +71,7 @@ const Login = () => {
               </div>
             )}
             <div className="mt-4 mb-2 text-center">
-              <button className="btn btn-warning" onClick={login}>
+              <button className="btn btn-yellow" onClick={login}>
                 Log in
               </button>
             </div>

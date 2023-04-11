@@ -13,14 +13,14 @@ const HomeRestaurants = () => {
     });
   }, []);
   return (
-    <div className="px-3 py-5">
+    <div className="px-3 py-5 bg-grey">
       <div className="d-flex justify-content-between px-4">
-      <p className="mx-3 my-auto text-warning fw-semibold fs-3">
+      <p className="mx-3 my-auto text-yellow fw-semibold fs-3">
           Top Restaurants
         </p>
         <Link to="/restaurants" className="mx-3 my-auto text-dark text-decoration-none">See More</Link>
       </div>
-      <div className="mx-3 bg-warning" style={{ height: "2px" }}></div>
+      <div className="mx-3 bg-yellow" style={{ height: "2px" }}></div>
       <div className="px-4 py-3">
         <div className="row flex-row flex-nowrap" style={{overflowX: "auto", overflowY: "hidden"}}>
           {restaurants.map((restaurant, index) => (

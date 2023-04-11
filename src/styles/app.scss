@@ -1,0 +1,25 @@
+@import "~bootstrap/scss/functions"; // required
+@import "~bootstrap/scss/variables"; // required to get $orange variable
+
+$yellow: #f1ac18;
+$green: #79a33d;
+$orange: #f25b0a;
+$red: #cc080b;
+$purple: #3f3d56;
+$grey: #f6f6f6;
+
+// merge with existing $theme-colors map
+$theme-colors: map-merge(
+  $theme-colors,
+  (
+    "yellow": $yellow,
+    "green": $green,
+    "orange": $orange,
+    "red": $red,
+    "purple": $purple,
+    "grey": $grey,
+  )
+);
+
+// set changes
+@import "bootstrap";
