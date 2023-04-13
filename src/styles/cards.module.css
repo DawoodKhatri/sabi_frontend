@@ -11,6 +11,16 @@
 }
 
 .thumbnail {
-  aspect-ratio: 4/3;
+  aspect-ratio: 2;
   object-fit: cover;
+}
+
+.tag {
+  font-size: 12px;
+}
+
+.button button {
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+  font-size: 12px !important;
 }

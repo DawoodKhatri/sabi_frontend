@@ -17,6 +17,7 @@ import Navbar from "./navigations/navbar";
 //Restaurant
 import RestaurantAbout from "./restaurant/about";
 import RestaurantProducts from "./restaurant/product";
+import RestaurantSimilar from "./restaurant/similar";
 
 //Cart
 import CartEmpty from "./cart/cartEmpty";
@@ -33,6 +34,7 @@ export {
   Navbar,
   RestaurantAbout,
   RestaurantProducts,
+  RestaurantSimilar,
   CartEmpty,
   CartPorducts,
 };
