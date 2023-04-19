@@ -3,7 +3,7 @@ import httpRequest from "../../utils/request";
 import ProductCard from "../cards/productCard";
 
 const RestaurantProducts = ({ id }) => {
-  const [products, SetProducts] = useState();
+  const [products, SetProducts] = useState([]);
 
   useEffect(() => {
     httpRequest(`/api/products/${id}`, "GET").then((response) => {
@@ -11,9 +11,7 @@ const RestaurantProducts = ({ id }) => {
         SetProducts(response.data);
       }
     });
-  }, []);
-
-  if (!products) return <></>;
+  }, [id]);
 
   return (
     <div className="container-fluid shadow w-auto my-4 mx-2 p-2 p-md-4 rounded">

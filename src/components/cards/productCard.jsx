@@ -20,6 +20,7 @@ const ProductCard = ({
   rating: { $numberDecimal: rating },
   reviews,
   tag,
+  price
 }) => {
   const { auth, details } = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
@@ -64,12 +65,17 @@ const ProductCard = ({
             {name}
           </span>
           <span
+            className={`${styles.tag} text-truncate bg-green text-white px-1 rounded-1`}
+          >
+            ₹{price}
+          </span>
+        </p>
+        <p className="m-0 d-flex justify-content-between align-items-center">
+        <span
             className={`${styles.tag} text-truncate bg-orange text-white px-1 rounded-1`}
           >
             {tag}
           </span>
-        </p>
-        <p className="m-0 d-flex justify-content-between">
           <span className="text-warning">
             {Array.apply(null, { length: 5 }).map((_, i) => {
               if (rating - i <= 0) {
@@ -85,7 +91,6 @@ const ProductCard = ({
               }
             })}
           </span>
-          <span>({reviews.length} reviews)</span>
         </p>
         <p className="m-0 d-flex align-items-center">
           <span className="col-4 text-truncate" title={cuisine}>

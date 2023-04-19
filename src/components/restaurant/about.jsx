@@ -11,7 +11,7 @@ const RestaurantAbout = ({ id }) => {
         setRestaurant(response.data);
       }
     });
-  }, []);
+  }, [id]);
 
   if (!restaurant) return <></>;
 

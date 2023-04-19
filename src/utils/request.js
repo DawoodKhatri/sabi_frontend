@@ -1,17 +1,20 @@
 import { loading } from "../redux/slices/commonSlice";
 import { dispatch } from "../redux/store";
 
-const httpRequest = async (url, method, params = {}) => {
-  url = process.env.REACT_APP_API + url;
+const httpRequest = async (url, method, params = {}, ml = false) => {
+  url = (ml ? process.env.REACT_APP_ML_API : process.env.REACT_APP_API) + url;
+  console.log(url);
 
   let options = {
-    credentials: "include",
     method,
-
     headers: {
       "Content-Type": "application/json",
     },
   };
+
+  if (!ml) {
+    options["credentials"] = "include";
+  }
 
   switch (method) {
     case "GET":

@@ -21,7 +21,8 @@ import RestaurantSimilar from "./restaurant/similar";
 
 //Cart
 import CartEmpty from "./cart/cartEmpty";
-import CartPorducts from "./cart/cartProducts";
+import CartProducts from "./cart/cartProducts";
+import CartSummary from "./cart/cartSummary";
 
 export {
   Loading,
@@ -36,5 +37,6 @@ export {
   RestaurantProducts,
   RestaurantSimilar,
   CartEmpty,
-  CartPorducts,
+  CartProducts,
+  CartSummary,
 };

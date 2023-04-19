@@ -9,7 +9,6 @@ import {
 
 const Restaurant = () => {
   const { id } = useParams();
-
   return (
     <>
       <Navbar />
