@@ -37,7 +37,6 @@ const Restaurants = () => {
   return (
     <>
       <Navbar />
-      {JSON.stringify(allCuisines)}
       <div className="px-3 py-5 bg-grey">
         <div className="d-flex justify-content-between px-4">
           <p className="mx-3 my-auto text-yellow fw-semibold fs-3">
