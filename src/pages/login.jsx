@@ -21,7 +21,7 @@ const Login = () => {
       userLogin(
         data,
         () => {
-          navigate("/dashboard");
+          navigate("/");
         },
         (message) => {
           setError(message);
@@ -33,7 +33,7 @@ const Login = () => {
   useEffect(() => {
     if (auth) {
         console.log(auth);
-      navigate("/dashboard");
+      navigate("/");
     }
   }, [auth]);
 

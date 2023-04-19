@@ -1,13 +1,5 @@
-import React, { useEffect, useState } from "react";
-import {
-  CartEmpty,
-  CartProducts,
-  CartSummary,
-  Navbar,
-  RestaurantAbout,
-} from "../components";
-import httpRequest from "../utils/request";
-import { Link } from "react-router-dom";
+import React from "react";
+import { CartEmpty, CartProducts, CartSummary, Navbar } from "../components";
 import { useSelector } from "react-redux";
 
 const Cart = () => {

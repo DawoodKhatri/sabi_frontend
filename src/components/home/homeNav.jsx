@@ -5,7 +5,7 @@ import { userLogout } from "../../redux/slices/userSlice";
 import styles from "../../styles/home.module.css";
 
 const HomeNav = () => {
-  const auth = useSelector((state) => state.user.auth);
+  const { auth, details } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -36,16 +36,20 @@ const HomeNav = () => {
           <div className="py-3">
             {auth ? (
               <>
-                <Link to="/dashboard">
+                {/* <Link to="/dashboard">
                   <button className="btn btn-outline-yellow mx-2">
                     <i className="bi bi-person"></i>
                   </button>
-                </Link>
-                <Link to="/cart">
-                  <button className="btn btn-outline-yellow mx-2">
-                    <i className="bi bi-cart"></i>
-                  </button>
-                </Link>
+                </Link> */}
+                {details.isBusiness ? (
+                  <></>
+                ) : (
+                  <Link to="/cart">
+                    <button className="btn btn-outline-yellow mx-2">
+                      <i className="bi bi-cart"></i>
+                    </button>
+                  </Link>
+                )}
                 <button className="btn btn-danger mx-2" onClick={logout}>
                   <i className="bi bi-box-arrow-right"></i>
                 </button>
