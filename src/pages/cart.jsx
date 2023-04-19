@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   CartEmpty,
-  CartPorducts,
+  CartProducts,
   CartSummary,
   Navbar,
   RestaurantAbout,
