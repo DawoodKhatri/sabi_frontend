@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Booking = () => {
-  return (
-    <div>Booking</div>
-  )
-}
+  const { auth, details } = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
-export default Booking
+  useEffect(() => {
+    if (auth && details.isBusiness) {
+      navigate("/");
+    }
+  }, [auth]);
+
+  return <div>Booking</div>;
+};
+
+export default Booking;

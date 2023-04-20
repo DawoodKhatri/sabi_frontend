@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const CartSummary = () => {
   const { restaurant, products } = useSelector((state) => state.cart);
@@ -49,14 +50,11 @@ const CartSummary = () => {
             </tr>
           </tbody>
         </table>
-        <button
-          className="btn btn-purple h-auto mx-auto my-auto"
-          onClick={() => {
-            dispatch(clearCart());
-          }}
-        >
-          Book Now
-        </button>
+        <Link to="/cart/booking" className="mx-auto">
+          <button className="btn btn-purple h-auto">
+            Book Now
+          </button>
+        </Link>
       </div>
     </div>
   );

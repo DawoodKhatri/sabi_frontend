@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { CartEmpty, CartProducts, CartSummary, Navbar } from "../components";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
+  const { auth, details } = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (auth && details.isBusiness) {
+      navigate("/");
+    }
+  }, [auth]);
 
   return (
     <div className="bg-grey min-vh-100">

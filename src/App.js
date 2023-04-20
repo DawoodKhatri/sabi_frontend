@@ -6,10 +6,12 @@
 // import RestaurantsPage from "./Components/RestaurantsPage";
 
 import {
+  Booking,
   Cart,
   Dashboard,
   Home,
   Login,
+  PageNotFound,
   Restaurant,
   Restaurants,
   Signup,
@@ -34,12 +36,14 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/restaurants" element={<Restaurants />} />
+        <Route path="/restaurant/:id" element={<Restaurant />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Signup />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/restaurants" element={<Restaurants />} />
-        <Route path="/restaurant/:id" element={<Restaurant />} />
+        <Route path="/cart/booking" element={<Booking />} />
+        <Route path="*" element={<PageNotFound />} />
         {/* <Route path="/signup" element={<Signup update={setData} />} />
         <Route path="/login" element={<Login update={setData} />} />
         <Route
