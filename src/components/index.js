@@ -5,9 +5,11 @@ import Loading from "./common/loading";
 import HeroSection from "./home/heroSection";
 import HomeService from "./home/service";
 import HomeRestaurants from "./home/restaurants";
+import HomeChefs from "./home/chefs";
 
 //Cards
 import RestaurantCard from "./cards/restaurantCard";
+import ChefCard from "./cards/chefCard";
 import ProductCard from "./cards/productCard";
 import ServiceCard from "./cards/serviceCard";
 
@@ -24,12 +26,17 @@ import CartEmpty from "./cart/cartEmpty";
 import CartProducts from "./cart/cartProducts";
 import CartSummary from "./cart/cartSummary";
 
+//Booking
+import BookingChefSelection from "./booking/chefSelection";
+
 export {
   Loading,
   HeroSection,
   HomeService,
   HomeRestaurants,
+  HomeChefs,
   RestaurantCard,
+  ChefCard,
   ProductCard,
   ServiceCard,
   Navbar,
@@ -39,4 +46,5 @@ export {
   CartEmpty,
   CartProducts,
   CartSummary,
+  BookingChefSelection,
 };

@@ -20,7 +20,8 @@ const ProductCard = ({
   rating: { $numberDecimal: rating },
   reviews,
   tag,
-  price
+  price,
+  disabled,
 }) => {
   const { auth, details } = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
@@ -71,13 +72,14 @@ const ProductCard = ({
           </span>
         </p>
         <p className="m-0 d-flex justify-content-between align-items-center">
-        <span
+          <span
             className={`${styles.tag} text-truncate bg-orange text-white px-1 rounded-1`}
           >
             {tag}
           </span>
-          <span className="text-warning">
-            {Array.apply(null, { length: 5 }).map((_, i) => {
+          <span className="text-purple fw-semibold my-1">
+            {rating} <i className="bi bi-star-fill text-warning" />
+            {/* {Array.apply(null, { length: 5 }).map((_, i) => {
               if (rating - i <= 0) {
                 return <i className="bi bi-star" key={`$rating_star_${i}`}></i>;
               } else if (rating - i < 1) {
@@ -89,14 +91,14 @@ const ProductCard = ({
                   <i className="bi bi-star-fill" key={`$rating_star_${i}`}></i>
                 );
               }
-            })}
+            })} */}
           </span>
         </p>
         <p className="m-0 d-flex align-items-center">
-          <span className="col-4 text-truncate" title={cuisine}>
+          <span className={`${!disabled && "col-4 "}text-truncate`} title={cuisine}>
             {cuisine}
           </span>
-          {auth && !details.isBusiness && (
+          {!disabled && auth && !details.isBusiness && (
             <span className={`${styles.button} col-8 text-end`}>
               {quantity > 0 ? (
                 <>

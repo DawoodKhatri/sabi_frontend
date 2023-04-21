@@ -120,3 +120,15 @@ body,
 .subtitleFont {
   font-family: "Aref Ruqaa Ink", serif;
 }
+
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: #eeeeee;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bs-yellow);
+  border-radius: 10px;
+}

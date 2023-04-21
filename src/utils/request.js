@@ -3,7 +3,6 @@ import { dispatch } from "../redux/store";
 
 const httpRequest = async (url, method, params = {}, ml = false) => {
   url = (ml ? process.env.REACT_APP_ML_API : process.env.REACT_APP_API) + url;
-  console.log(url);
 
   let options = {
     method,

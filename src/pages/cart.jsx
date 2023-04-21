@@ -17,7 +17,7 @@ const Cart = () => {
   return (
     <div className="bg-grey min-vh-100">
       <Navbar />
-      <div className="p-2 h-75">
+      <div className="p-2">
         {cart ? (
           <>
             <div className="row w-100 m-0 px-2 px-md-4 py-2 py-md-4">
