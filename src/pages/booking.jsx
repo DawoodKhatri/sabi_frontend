@@ -1,11 +1,18 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Navbar, BookingChefSelection } from "../components";
+import {
+  Navbar,
+  BookingChefSelection,
+  BookingDetailsAndTable,
+  BookingConfirmDetails,
+} from "../components";
 import { useState } from "react";
+import httpRequest from "../utils/request";
 
 const Booking = () => {
   const { auth, details } = useSelector((state) => state.user);
+  const { restaurant } = useSelector((state) => state.cart);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,6 +23,8 @@ const Booking = () => {
 
   const [bookingDetails, setBookingDetails] = useState({
     orders: [],
+    time_slot: null,
+    tables: [],
   });
 
   const setOrders = (orders) => {
@@ -33,12 +42,25 @@ const Booking = () => {
       ),
     },
     {
-      title: "Booking Slot & Table Selection",
-      element: <></>,
+      title: "Additional Details & Table Selection",
+      element: (
+        <BookingDetailsAndTable
+          bookingDetails={bookingDetails}
+          setBookingDetails={setBookingDetails}
+        />
+      ),
+    },
+    {
+      title: "Confirm Booking Details",
+      element: <BookingConfirmDetails bookingDetails={bookingDetails} />,
     },
   ];
 
   const [currSteps, setCurrSteps] = useState(0);
+
+  const validate = (onValid, onInvalid = () => {}) => {
+    onValid();
+  };
 
   const prevStep = () => {
     setCurrSteps(currSteps - 1);
@@ -46,6 +68,22 @@ const Booking = () => {
 
   const nextStep = () => {
     setCurrSteps(currSteps + 1);
+  };
+
+  const confirmBooking = () => {
+    httpRequest(
+      `/api/booking/createBooking?id=${restaurant._id}`,
+      "POST",
+      bookingDetails
+    ).then(
+      ({ message }) => {
+        alert(message);
+        navigate("/dashboard")
+      },
+      ({ message }) => {
+        alert(message);
+      }
+    );
   };
 
   return (
@@ -59,20 +97,23 @@ const Booking = () => {
 
           <div className="d-flex justify-content-center gap-5 my-5">
             <button
-              className={`btn btn-purple mx-5${currSteps === 0 && " disabled"}`}
-              onClick={prevStep}
+              className={`btn btn-purple${currSteps === 0 ? " disabled" : ""}`}
+              onClick={() => validate(prevStep)}
             >
               <i className="bi bi-arrow-left-circle px-2" />
               Previous
             </button>
             {currSteps !== steps.length - 1 && (
-              <button className="btn btn-purple mx-5" onClick={nextStep}>
+              <button
+                className="btn btn-purple"
+                onClick={() => validate(nextStep)}
+              >
                 Next
                 <i className="bi bi-arrow-right-circle px-2" />
               </button>
             )}
             {currSteps === steps.length - 1 && (
-              <button className="btn btn-yellow mx-5">
+              <button className="btn btn-yellow" onClick={confirmBooking}>
                 <i className="bi bi-check-circle px-2" />
                 Confirm Booking
               </button>

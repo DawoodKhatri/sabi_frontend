@@ -12,6 +12,8 @@ import RestaurantCard from "./cards/restaurantCard";
 import ChefCard from "./cards/chefCard";
 import ProductCard from "./cards/productCard";
 import ServiceCard from "./cards/serviceCard";
+import SlotCard from "./cards/slotCard";
+import TableCard from "./cards/tableCard";
 
 //Navigations
 import Navbar from "./navigations/navbar";
@@ -28,6 +30,8 @@ import CartSummary from "./cart/cartSummary";
 
 //Booking
 import BookingChefSelection from "./booking/chefSelection";
+import BookingDetailsAndTable from "./booking/detailsAndTable";
+import BookingConfirmDetails from "./booking/confirmDetails";
 
 export {
   Loading,
@@ -39,6 +43,8 @@ export {
   ChefCard,
   ProductCard,
   ServiceCard,
+  SlotCard,
+  TableCard,
   Navbar,
   RestaurantAbout,
   RestaurantProducts,
@@ -47,4 +53,6 @@ export {
   CartProducts,
   CartSummary,
   BookingChefSelection,
+  BookingDetailsAndTable,
+  BookingConfirmDetails
 };

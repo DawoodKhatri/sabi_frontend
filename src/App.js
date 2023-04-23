@@ -17,21 +17,9 @@ import {
   Signup,
 } from "./pages";
 
-import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { userLogin } from "./redux/slices/userSlice";
 
 export default function App() {
-  const data = useSelector((state) => state);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    // console.log(data);
-    // dispatch(
-    //   userLogin({ email: "dawoodkhatri18@gmail.com", password: "DK@SABI" })
-    // );
-  }, []);
   return (
     <BrowserRouter>
       <Routes>

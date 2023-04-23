@@ -9,7 +9,14 @@ const AuthProvider = ({ children }) => {
   const { auth, details } = useSelector((state) => state.user);
 
   useEffect(() => {
-    dispatch(userAuth());
+    dispatch(
+      userAuth(
+        () => {},
+        () => {
+          setSetup(true);
+        }
+      )
+    );
   }, []);
 
   useEffect(() => {

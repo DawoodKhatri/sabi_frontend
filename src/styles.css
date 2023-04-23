@@ -121,7 +121,12 @@ body,
   font-family: "Aref Ruqaa Ink", serif;
 }
 
+.rdp {
+  --rdp-accent-color: var(--bs-yellow);
+  --rdp-background-color: #fff6e2;
+}
 
+/* 
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -131,4 +136,4 @@ body,
 ::-webkit-scrollbar-thumb {
   background: var(--bs-yellow);
   border-radius: 10px;
-}
+} */

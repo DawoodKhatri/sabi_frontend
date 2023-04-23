@@ -12,3 +12,5 @@ export const FOOD_TYPES = {
     value: "veg&NonVeg",
   },
 };
+
+export const WEEKS = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];

@@ -1,3 +1,4 @@
 import { FOOD_TYPES } from "./common.constants";
+import {WEEKS} from "./common.constants"
 
-export {FOOD_TYPES}
+export {FOOD_TYPES, WEEKS}
