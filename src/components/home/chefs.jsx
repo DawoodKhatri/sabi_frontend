@@ -18,12 +18,12 @@ const HomeChefs = () => {
         <p className="mx-3 my-auto text-yellow fw-semibold fs-3">
           Our Top Chefs
         </p>
-        <Link
+        {/* <Link
           to="/chefs"
           className="mx-3 my-auto text-dark text-decoration-none"
         >
           See More
-        </Link>
+        </Link> */}
       </div>
       <div className="mx-3 bg-yellow" style={{ height: "2px" }}></div>
       <div className="px-4 py-3">

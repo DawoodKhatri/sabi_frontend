@@ -36,11 +36,11 @@ const HomeNav = () => {
           <div className="py-3">
             {auth ? (
               <>
-                {/* <Link to="/dashboard">
+                <Link to="/dashboard">
                   <button className="btn btn-outline-yellow mx-2">
                     <i className="bi bi-person"></i>
                   </button>
-                </Link> */}
+                </Link>
                 {details.isBusiness ? (
                   <></>
                 ) : (

@@ -52,7 +52,12 @@ const Booking = () => {
     },
     {
       title: "Confirm Booking Details",
-      element: <BookingConfirmDetails bookingDetails={bookingDetails} />,
+      element: (
+        <BookingConfirmDetails
+          bookingDetails={bookingDetails}
+          setBookingDetails={setBookingDetails}
+        />
+      ),
     },
   ];
 
@@ -76,9 +81,9 @@ const Booking = () => {
       "POST",
       bookingDetails
     ).then(
-      ({ message }) => {
+      ({ success, message }) => {
         alert(message);
-        navigate("/dashboard")
+        if (success) navigate("/dashboard");
       },
       ({ message }) => {
         alert(message);

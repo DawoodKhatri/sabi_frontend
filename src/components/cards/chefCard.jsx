@@ -13,47 +13,22 @@ const ChefCard = ({
   speciality,
   disabled,
 }) => {
-  if (disabled)
-    return (
-      <div
-        className={`${styles.card_transparent} h-auto m-1 d-flex flex-column`}
-      >
-        <img
-          className={`${styles.photo} mx-auto my-2 rounded rounded-circle`}
-          src={photo.url}
-          alt={photo.fileName}
-        />
-        <div className="px-2 mx-auto my-2">
-          <p className="m-0 fw-bold fs-sm-5 text-center">{name}</p>
-          <p className="m-0 text-center text-decoration-underline">
-            <span className="fw-semibold">Speciality</span>
-            <br />
-            {speciality}
-          </p>
-        </div>
-      </div>
-    );
   return (
-    <Link to={`/chef/${_id}`} className="text-dark text-decoration-none">
-      <div
-        className={`${styles.card_transparent} h-auto m-1 d-flex flex-column`}
-      >
-        <img
-          className={`${styles.photo} mx-auto my-2 rounded rounded-circle`}
-          src={photo.url}
-          alt={photo.fileName}
-        />
-        <div className="px-2 mx-auto my-2">
-          <p className="m-0 fw-bold fs-sm-5 text-center">{name}</p>
-          <p className="m-0 text-center text-decoration-underline">
-            <span className="fw-semibold">Speciality</span>
-            <br />
-            {speciality}
-          </p>
-        </div>
+    <div className={`${styles.card_transparent} h-auto m-1 d-flex flex-column`}>
+      <img
+        className={`${styles.photo} mx-auto my-2 rounded rounded-circle`}
+        src={photo.url}
+        alt={photo.fileName}
+      />
+      <div className="px-2 mx-auto my-2">
+        <p className="m-0 fw-bold fs-sm-5 text-center">{name}</p>
+        <p className="m-0 text-center text-decoration-underline">
+          <span className="fw-semibold">Speciality</span>
+          <br />
+          {speciality}
+        </p>
       </div>
-    </Link>
+    </div>
   );
 };
-
 export default ChefCard;

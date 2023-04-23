@@ -12,9 +12,7 @@ const AuthProvider = ({ children }) => {
     dispatch(
       userAuth(
         () => {},
-        () => {
-          setSetup(true);
-        }
+        () => {}
       )
     );
   }, []);
@@ -31,6 +29,9 @@ const AuthProvider = ({ children }) => {
           }
         )
       );
+    }
+    if (auth && details?.isBusiness) {
+      setSetup(true);
     }
   }, [auth]);
 

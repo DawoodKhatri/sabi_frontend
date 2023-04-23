@@ -32,20 +32,6 @@ export default function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/cart/booking" element={<Booking />} />
         <Route path="*" element={<PageNotFound />} />
-        {/* <Route path="/signup" element={<Signup update={setData} />} />
-        <Route path="/login" element={<Login update={setData} />} />
-        <Route
-          path="/dashboard"
-          element={<Dashboard userData={userData} setData={setData} />}
-        />
-        {userData && userData.type === "customer" && (
-          <Route
-            path="/dashboard/newbooking"
-            element={<NewBooking id={userData._id.toString()} />}
-          />
-        )}
-        <Route path="/restaurant/:id" element={<RestaurantsPage />} />
-        <Route path="*" element={<>404</>} /> */}
       </Routes>
     </BrowserRouter>
   );

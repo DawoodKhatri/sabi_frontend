@@ -12,6 +12,7 @@ $grey: #f6f6f6;
 $theme-colors: map-merge(
   $theme-colors,
   (
+    "primary": $yellow,
     "yellow": $yellow,
     "green": $green,
     "orange": $orange,

@@ -21,7 +21,7 @@ const Login = () => {
       userLogin(
         data,
         () => {
-          navigate("/");
+          navigate("/dashboard");
         },
         (message) => {
           setError(message);
@@ -32,15 +32,12 @@ const Login = () => {
 
   useEffect(() => {
     if (auth) {
-        console.log(auth);
-      navigate("/");
+      navigate("/dashboard");
     }
   }, [auth]);
 
   return (
-    <div
-      className="container-fluid min-vh-100 p-2 d-flex bg-grey"
-    >
+    <div className="container-fluid min-vh-100 p-2 d-flex bg-grey">
       <div className="card col-12 col-sm-8 col-md-6 col-xl-4 rounded rounded-4 text-center m-auto">
         <div className="card-header">
           <p className="card-title display-6 fw-normal py-3">Log in</p>
@@ -67,7 +64,9 @@ const Login = () => {
             </div>
             {error && (
               <div className="mb-3 text-center border border-2 rounded rounded-2 border-danger">
-                <label className="form-label mx-3 my-1 text-danger">{error}</label>
+                <label className="form-label mx-3 my-1 text-danger">
+                  {error}
+                </label>
               </div>
             )}
             <div className="mt-4 mb-2 text-center">

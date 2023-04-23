@@ -1,37 +1,26 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Navbar } from "../components";
-import AddRestaurantForm from "../components/forms/addRestaurantForm";
-import httpRequest from "../utils/request";
+import { Navbar, CustomerDashboard, RestaurantDashboard } from "../components";
 
 const Dashboard = () => {
-  const user = useSelector((state) => state.user);
+  const { auth, details } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user && !user.auth) {
+    if (!auth) {
       navigate("/");
     }
-  }, [user]);
+  }, [auth]);
+
+  if (!auth) return <></>;
   return (
-    <>
-      {user.auth && (
-        <>
-          <Navbar />
-          {user.details.isBusiness && (
-            <div
-              className="container-fluid p-2 d-flex"
-              style={{ backgroundColor: "#eee" }}
-            >
-              <div className="w-75 p-5 m-auto">
-                <AddRestaurantForm />
-              </div>
-            </div>
-          )}
-        </>
-      )}
-    </>
+    <div className="bg-grey min-vh-100">
+      <Navbar />
+      <div className="p-2">
+        {details.isBusiness ? <RestaurantDashboard /> : <CustomerDashboard />}
+      </div>
+    </div>
   );
 };
 

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import httpRequest from "../../utils/request";
-import { Link } from "react-router-dom";
 
-const BookingConfirmDetails = ({ bookingDetails }) => {
+const BookingConfirmDetails = ({ bookingDetails, setBookingDetails }) => {
   const { restaurant, products } = useSelector((state) => state.cart);
   const [chefs, setChefs] = useState([]);
   const [tables, setTables] = useState([]);
@@ -21,6 +20,15 @@ const BookingConfirmDetails = ({ bookingDetails }) => {
         }
       });
   }, [restaurant]);
+
+  useEffect(() => {
+    restaurant &&
+      setBookingDetails({
+        ...bookingDetails,
+        total_bill: getProductTotal() + getTableTotal(),
+        advance_payment: 0,
+      });
+  }, [restaurant, chefs, tables]);
 
   const getChef = (productId) => {
     return chefs.filter(
@@ -112,41 +120,38 @@ const BookingConfirmDetails = ({ bookingDetails }) => {
           <table class="table table-borderless text-purple mb-0 text-center">
             <thead>
               <tr>
-                <th></th>
                 <th>Item</th>
                 <th>Total Price</th>
-                <th>Advance Payment</th>
+                {/* <th>Advance Payment</th> */}
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td></td>
                 <td>Products</td>
                 <td>₹{getProductTotal()}</td>
-                <td>₹{Number(getProductTotal() / 2).toFixed(0)}</td>
+                {/* <td>₹{Number(getProductTotal() / 2).toFixed(0)}</td> */}
               </tr>
               <tr>
-                <td></td>
                 <td>Tables</td>
                 <td>₹{getTableTotal()}</td>
-                <td>₹{Number(getTableTotal() / 4).toFixed(0)}</td>
+                {/* <td>₹{Number(getTableTotal() / 4).toFixed(0)}</td> */}
               </tr>
               <tr>
-                <th></th>
                 <th>Total Bill</th>
                 <th>₹{getProductTotal() + getTableTotal()}</th>
-                <th>
+                {/* <th>
                   ₹
                   {Number(Number(getProductTotal() / 2).toFixed(0)) +
                     Number(Number(getTableTotal() / 4).toFixed(0))}
-                </th>
+                </th> */}
               </tr>
             </tbody>
           </table>
         </div>
-        <p className="text-center text-red fw-semibold my-3">
-          To Book an Order you must Pay<br/> 50% of Products and 25% of Tables in Advance
-        </p>
+        {/* <p className="text-center text-red fw-semibold my-3">
+          To Book an Order you must Pay
+          <br /> 50% of Products and 25% of Tables in Advance
+        </p> */}
       </div>
     </div>
   );

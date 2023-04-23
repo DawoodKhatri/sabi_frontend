@@ -33,6 +33,10 @@ import BookingChefSelection from "./booking/chefSelection";
 import BookingDetailsAndTable from "./booking/detailsAndTable";
 import BookingConfirmDetails from "./booking/confirmDetails";
 
+//Dashboard
+import CustomerDashboard from "./customerDashboard/dashboard";
+import RestaurantDashboard from "./restaurantDashboard/dashboard";
+
 export {
   Loading,
   HeroSection,
@@ -54,5 +58,7 @@ export {
   CartSummary,
   BookingChefSelection,
   BookingDetailsAndTable,
-  BookingConfirmDetails
+  BookingConfirmDetails,
+  CustomerDashboard,
+  RestaurantDashboard,
 };
