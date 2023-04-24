@@ -4,6 +4,7 @@ import BookingCard from "../cards/bookingCard";
 
 const Restaurant = () => {
   const [restaurants, setRestaurants] = useState([]);
+  const [change, setChange] = useState(false);
 
   const updateRestaurants = async (restaurantData) => {
     let tempRestaurants = Array.from(restaurantData);
@@ -32,7 +33,7 @@ const Restaurant = () => {
         updateRestaurants(response.data);
       }
     });
-  }, []);
+  }, [change]);
 
   return (
     <div>
@@ -48,6 +49,8 @@ const Restaurant = () => {
                 {...booking}
                 key={`dashboard_bookings_card_${index}`}
                 type="restaurant"
+                change={change}
+                setChange={setChange}
               />
             ))
           )}

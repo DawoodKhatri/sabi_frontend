@@ -4,6 +4,7 @@ import BookingCard from "../cards/bookingCard";
 
 const CustomerDashboard = () => {
   const [bookings, setBookings] = useState([]);
+  const [change, setChange] = useState(false);
 
   useEffect(() => {
     httpRequest("/api/bookings/customer", "GET").then((response) => {
@@ -11,7 +12,7 @@ const CustomerDashboard = () => {
         setBookings(response.data.reverse());
       }
     });
-  }, []);
+  }, [change]);
   return (
     <div>
       <div className="container-fluid bg-white shadow w-auto p-2 p-md-4 m-4 rounded">
@@ -26,6 +27,8 @@ const CustomerDashboard = () => {
               {...booking}
               key={`dashboard_bookings_card_${index}`}
               type="customer"
+              change={change}
+              setChange={setChange}
             />
           ))}
         </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "../../styles/cards.module.css";
+import httpRequest from "../../utils/request";
 
 const BookingCard = ({
   _id,
@@ -14,6 +15,8 @@ const BookingCard = ({
   total_bill,
   advance_payment,
   type,
+  change,
+  setChange,
 }) => {
   const getProductTotal = () => {
     let total = 0;
@@ -31,6 +34,41 @@ const BookingCard = ({
       total += price;
     });
     return total;
+  };
+
+  const confirmBooking = () => {
+    httpRequest(`/api/booking/confirmBooking/${_id}`, "PUT").then(
+      (response) => {
+        if (response.success) {
+          setChange(!change);
+        } else {
+          alert(response.message);
+        }
+      }
+    );
+  };
+
+  const rejectBooking = () => {
+    httpRequest(`/api/booking/rejectBooking/${_id}`, "DELETE").then(
+      (response) => {
+        if (response.success) {
+          setChange(!change);
+        } else {
+          alert(response.message);
+        }
+      }
+    );
+  };
+  const cancelBooking = () => {
+    httpRequest(`/api/booking/cancelBooking/${_id}`, "DELETE").then(
+      (response) => {
+        if (response.success) {
+          setChange(!change);
+        } else {
+          alert(response.message);
+        }
+      }
+    );
   };
 
   return (
@@ -94,6 +132,40 @@ const BookingCard = ({
                   </p>
                 </div>
               </div>
+              {status === "Pending"   && (
+                <div className="text-end mx-4">
+                  {type === "customer" ? (
+                    <>
+                      {
+                        <button
+                          className="btn btn-red btn-sm text-white mx-4"
+                          onClick={cancelBooking}
+                        >
+                          <i className="bi bi-x-lg px-1" />
+                          Cancel Order
+                        </button>
+                      }
+                    </>
+                  ) : (
+                    <>
+                      <button
+                        className="btn btn-red btn-sm text-white"
+                        onClick={rejectBooking}
+                      >
+                        <i className="bi bi-x-lg px-1" />
+                        Reject
+                      </button>
+                      <button
+                        className="btn btn-green btn-sm text-white mx-4"
+                        onClick={confirmBooking}
+                      >
+                        <i className="bi bi-check2 px-1" />
+                        Accept
+                      </button>
+                    </>
+                  )}
+                </div>
+              )}
             </div>
           </button>
         </div>
