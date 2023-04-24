@@ -33,6 +33,9 @@ const AuthProvider = ({ children }) => {
     if (auth && details?.isBusiness) {
       setSetup(true);
     }
+    if (auth === false) {
+      setSetup(true);
+    }
   }, [auth]);
 
   if (setup) return children;
