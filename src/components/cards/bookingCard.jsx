@@ -142,7 +142,7 @@ const BookingCard = ({
                           onClick={cancelBooking}
                         >
                           <i className="bi bi-x-lg px-1" />
-                          Cancel Order
+                          Cancel
                         </button>
                       }
                     </>

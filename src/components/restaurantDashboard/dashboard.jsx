@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import RestaurantDashboardBookings from "./bookings";
 import RestaurantDashboardProducts from "./products";
@@ -28,10 +28,14 @@ const RestaurantDashboard = () => {
     },
   };
 
-  const getSection = () => {
+  useEffect(() => {
     if (!Object.keys(sections).includes(currSection)) {
       navigate(`/dashboard/restaurant/${id}/bookings`);
-    } else {
+    }
+  }, [currSection]);
+
+  const getSection = () => {
+    if (currSection && Object.keys(sections).includes(currSection)) {
       return sections[currSection].element;
     }
   };

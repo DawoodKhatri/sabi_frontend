@@ -20,7 +20,7 @@ const RestaurantDashboardBookings = () => {
   return (
     <div>
       <div className="container-fluid bg-white shadow w-auto p-2 p-md-4 m-4 rounded">
-        {bookings.length < 0 ? (
+        {bookings.length > 0 ? (
           <>
             <div className="d-flex justify-content-between align-items-center mx-2">
               <h2 className="text-yellow">My Bookings</h2>
@@ -42,7 +42,9 @@ const RestaurantDashboardBookings = () => {
           <>
             <div className="m-auto my-5 text-center">
               <img src={emptyImage} width={300} />
-              <p className="fs-3 fw-semibold text-purple mt-3">No Bookings Yet</p>
+              <p className="fs-3 fw-semibold text-purple mt-3">
+                No Bookings Yet
+              </p>
             </div>
           </>
         )}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import CustomerDashboardBookings from "./bookings";
 import CustomerDashboardProfile from "./profile";
@@ -14,14 +14,18 @@ const CustomerDashboaard = () => {
     },
     products: {
       text: "Profile",
-      element: <CustomerDashboardProfile/>,
+      element: <CustomerDashboardProfile />,
     },
   };
 
-  const getSection = () => {
+  useEffect(() => {
     if (!currSection || !Object.keys(sections).includes(currSection)) {
       navigate(`/dashboard/bookings`);
-    } else {
+    }
+  }, [currSection]);
+
+  const getSection = () => {
+    if (currSection && Object.keys(sections).includes(currSection)) {
       return sections[currSection].element;
     }
   };
