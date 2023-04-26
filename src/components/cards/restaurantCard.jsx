@@ -11,9 +11,17 @@ const RestaurantCard = ({
   rating: { $numberDecimal: rating },
   reviews,
   cuisines,
+  role,
 }) => {
   return (
-    <Link to={`/restaurant/${_id}`} className="text-dark text-decoration-none">
+    <Link
+      to={
+        role === "restaurant"
+          ? `/dashboard/restaurant/${_id}/bookings`
+          : `/restaurant/${_id}`
+      }
+      className="text-dark text-decoration-none"
+    >
       <div
         className={`${styles.card} h-auto m-1 rounded rounded-4 overflow-hidden`}
       >

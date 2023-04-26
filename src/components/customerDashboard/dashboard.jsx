@@ -1,40 +1,54 @@
-import React, { useState, useEffect } from "react";
-import httpRequest from "../../utils/request";
-import BookingCard from "../cards/bookingCard";
+import React from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import CustomerDashboardBookings from "./bookings";
+import CustomerDashboardProfile from "./profile";
 
-const CustomerDashboard = () => {
-  const [bookings, setBookings] = useState([]);
-  const [change, setChange] = useState(false);
+const CustomerDashboaard = () => {
+  const { id, section: currSection } = useParams();
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    httpRequest("/api/bookings/customer", "GET").then((response) => {
-      if (response.success) {
-        setBookings(response.data.reverse());
-      }
-    });
-  }, [change]);
+  const sections = {
+    bookings: {
+      text: "Bookings",
+      element: <CustomerDashboardBookings />,
+    },
+    products: {
+      text: "Profile",
+      element: <CustomerDashboardProfile/>,
+    },
+  };
+
+  const getSection = () => {
+    if (!currSection || !Object.keys(sections).includes(currSection)) {
+      navigate(`/dashboard/bookings`);
+    } else {
+      return sections[currSection].element;
+    }
+  };
+
   return (
-    <div>
-      <div className="container-fluid bg-white shadow w-auto p-2 p-md-4 m-4 rounded">
-        <div className="d-flex justify-content-between align-items-center mx-2">
-          <h2 className="text-yellow">My Bookings</h2>
-        </div>
-        <div className="mx-2 bg-yellow" style={{ height: "2px" }}></div>
-
-        <div className="my-4 accordion" id="bookingCards">
-          {bookings.map((booking, index) => (
-            <BookingCard
-              {...booking}
-              key={`dashboard_bookings_card_${index}`}
-              type="customer"
-              change={change}
-              setChange={setChange}
-            />
+    <div className="d-flex flex-column">
+      <div className="mx-auto mt-3 p-2 bg-white shadow rounded">
+        <ul className="nav nav-pills nav-fill align-items-center">
+          {Object.keys(sections).map((section) => (
+            <li className="nav-item">
+              <Link
+                to={`/dashboard/${section}`}
+                className={`nav-link m-0${
+                  currSection === section
+                    ? " bg-yellow text-white"
+                    : " text-purple"
+                }`}
+              >
+                {sections[section].text}
+              </Link>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
+      {getSection()}
     </div>
   );
 };
 
-export default CustomerDashboard;
+export default CustomerDashboaard;

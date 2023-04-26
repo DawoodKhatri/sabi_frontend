@@ -3,7 +3,6 @@ import httpRequest from "../../utils/request";
 import { loading } from "./commonSlice";
 
 const initialState = {
-  auth: false,
 };
 
 const userSlice = createSlice({

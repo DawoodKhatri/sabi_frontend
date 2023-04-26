@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { Navbar, CustomerDashboard, RestaurantDashboard } from "../components";
 
 const Dashboard = () => {
@@ -18,7 +18,8 @@ const Dashboard = () => {
     <div className="bg-grey min-vh-100">
       <Navbar />
       <div className="p-2">
-        {details.isBusiness ? <RestaurantDashboard /> : <CustomerDashboard />}
+        <Outlet/>
+        {/* {details.isBusiness ? <RestaurantDashboard /> : <CustomerDashboard />} */}
       </div>
     </div>
   );

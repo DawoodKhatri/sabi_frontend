@@ -1,63 +1,73 @@
-import React, { useState, useEffect } from "react";
-import httpRequest from "../../utils/request";
-import BookingCard from "../cards/bookingCard";
+import React from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import RestaurantDashboardBookings from "./bookings";
+import RestaurantDashboardProducts from "./products";
+import RestaurantDashboardTables from "./tables";
+import RestaurantDashboardDetails from "./details";
 
-const Restaurant = () => {
-  const [restaurants, setRestaurants] = useState([]);
-  const [change, setChange] = useState(false);
+const RestaurantDashboard = () => {
+  const { id, section: currSection } = useParams();
+  const navigate = useNavigate();
 
-  const updateRestaurants = async (restaurantData) => {
-    let tempRestaurants = Array.from(restaurantData);
-    let i = restaurantData.length;
-    tempRestaurants.forEach(async (restaurant) => {
-      let bookings = (
-        await httpRequest(`/api/bookings/restaurant/${restaurant._id}`, "GET")
-      ).data;
-
-      tempRestaurants[tempRestaurants.indexOf(restaurant)] = {
-        ...restaurant,
-        bookings,
-      };
-
-      i -= 1;
-
-      if (i === 0) {
-        setRestaurants(tempRestaurants);
-      }
-    });
+  const sections = {
+    bookings: {
+      text: "Bookings",
+      element: <RestaurantDashboardBookings />,
+    },
+    products: {
+      text: "Products",
+      element: <RestaurantDashboardProducts />,
+    },
+    tables: {
+      text: "Tables",
+      element: <RestaurantDashboardTables />,
+    },
+    details: {
+      text: "Details",
+      element: <RestaurantDashboardDetails />,
+    },
   };
 
-  useEffect(() => {
-    httpRequest("/api/user/restaurants", "GET").then((response) => {
-      if (response.success) {
-        updateRestaurants(response.data);
-      }
-    });
-  }, [change]);
+  const getSection = () => {
+    if (!Object.keys(sections).includes(currSection)) {
+      navigate(`/dashboard/restaurant/${id}/bookings`);
+    } else {
+      return sections[currSection].element;
+    }
+  };
 
   return (
-    <div>
-      <div className="container-fluid bg-white shadow w-auto p-2 p-md-4 m-4 rounded">
-        <div className="d-flex justify-content-between align-items-center mx-2">
-          <h2 className="text-yellow">My Bookings</h2>
-        </div>
-        <div className="mx-2 bg-yellow" style={{ height: "2px" }}></div>
-        <div className="my-4 accordion" id="bookingCards">
-          {restaurants.map(({ bookings }, index) =>
-            bookings.map((booking) => (
-              <BookingCard
-                {...booking}
-                key={`dashboard_bookings_card_${index}`}
-                type="restaurant"
-                change={change}
-                setChange={setChange}
-              />
-            ))
-          )}
-        </div>
+    <div className="d-flex flex-column">
+      <div className="mx-auto mt-3 p-2 bg-white shadow rounded">
+        <ul className="nav nav-pills nav-fill align-items-center">
+          <li className="nav-item">
+            <Link
+              to="/dashboard"
+              className="nav-link py-1 bg-yellow text-white "
+            >
+              <i className="bi bi-arrow-left fs-5" />
+            </Link>
+          </li>
+          <div className="mx-2" />
+          {Object.keys(sections).map((section) => (
+            <li className="nav-item">
+              <Link
+                to={`/dashboard/restaurant/${id}/${section}`}
+                className={`nav-link m-0${
+                  currSection === section
+                    ? " bg-yellow text-white"
+                    : " text-purple"
+                }`}
+              >
+                {sections[section].text}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
+      {getSection()}
     </div>
   );
 };
 
-export default Restaurant;
+export default RestaurantDashboard;
