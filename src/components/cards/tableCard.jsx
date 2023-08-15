@@ -7,6 +7,7 @@ const TableCard = ({
   seats,
   price,
   availability,
+  role,
   selected = true,
   onSelect,
 }) => {
@@ -14,10 +15,10 @@ const TableCard = ({
     <div
       className={`${
         styles.card
-      } position-relative rounded rounded-4 overflow-hidden border border-2 ${
-        selected ? "border-orange" : "border-grey"
-      } ${!availability ? " opacity-50" : ""}`}
-      onClick={availability ? onSelect : () => {}}
+      } position-relative rounded rounded-4 overflow-hidden${role!=="restaurant" ? " border border-2 ":""}${
+        selected ? " border-orange" : " border-grey"
+      } ${!availability && role !== "restaurant" ? " opacity-50" : ""}`}
+      onClick={availability && role !== "restaurant" ? onSelect : () => {}}
     >
       <div className="position-absolute w-100 h-100 d-flex flex-column justify-content-center align-items-center gap-2 p-2">
         <p className="fw-semibold fs-5 m-0 text-purple text-decoration-underline">
@@ -31,15 +32,17 @@ const TableCard = ({
             ₹{price}
           </span>
         </p>
-        <p className="fw-semibold m-0">
-          <span
-            className={`text-white px-2 rounded-1 ${
-              availability ? "bg-green" : "bg-red"
-            }`}
-          >
-            {availability ? "Available" : "Not Available"}
-          </span>
-        </p>
+        {role !== "restaurant" && (
+          <p className="fw-semibold m-0">
+            <span
+              className={`text-white px-2 rounded-1 ${
+                availability ? "bg-green" : "bg-red"
+              }`}
+            >
+              {availability ? "Available" : "Not Available"}
+            </span>
+          </p>
+        )}
       </div>
       <img className="rounded rounded-2 w-100" src={tableImage} />
     </div>

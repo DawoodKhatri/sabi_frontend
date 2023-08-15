@@ -2,9 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import httpRequest from "../../utils/request";
 import { loading } from "./commonSlice";
 
-const initialState = {
-  auth: false,
-};
+const initialState = {};
 
 const userSlice = createSlice({
   name: "user",
@@ -15,21 +13,20 @@ const userSlice = createSlice({
     },
 
     logout: (state) => {
-      return initialState;
+      return {auth: false};
     },
   },
 });
 
 export const { login, logout } = userSlice.actions;
 
-
-const userRegister= (data, onSuccess, onError) => async (dispatch) => {
+const userRegister = (data, onSuccess, onError) => async (dispatch) => {
   try {
     dispatch(loading(true));
     httpRequest(`/api/user/register`, "POST", data).then(async (response) => {
       dispatch(loading(false));
       if (response.success) {
-        onSuccess()
+        onSuccess();
       } else {
         onError(response.message);
       }
@@ -50,6 +47,7 @@ const userAuth =
           onSuccess();
           dispatch(login(response.data));
         } else {
+          dispatch(logout());
           onError(response.message);
         }
       });
@@ -61,14 +59,16 @@ const userAuth =
 const userLogin = (data, onSuccess, onError) => async (dispatch) => {
   try {
     dispatch(loading(true));
-    httpRequest(`/api/user/login`, "POST", data).then(async (response, headers) => {
-      dispatch(loading(false));
-      if (response.success) {
-        dispatch(userAuth(onSuccess, onError));
-      } else {
-        onError(response.message);
+    httpRequest(`/api/user/login`, "POST", data).then(
+      async (response, headers) => {
+        dispatch(loading(false));
+        if (response.success) {
+          dispatch(userAuth(onSuccess, onError));
+        } else {
+          onError(response.message);
+        }
       }
-    });
+    );
   } catch (error) {
     onError(error.message);
   }

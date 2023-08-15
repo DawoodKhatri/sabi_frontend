@@ -12,6 +12,7 @@ import Popper from "popper.js";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./styles/app.scss";
 import "./styles.css";
+import { BrowserRouter } from "react-router-dom";
 
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
@@ -21,7 +22,9 @@ root.render(
     <Provider store={store}>
       <LoadingProvider>
         <AuthProvider>
-          <App />
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
         </AuthProvider>
       </LoadingProvider>
     </Provider>

@@ -63,8 +63,29 @@ const Booking = () => {
 
   const [currSteps, setCurrSteps] = useState(0);
 
-  const validate = (onValid, onInvalid = () => {}) => {
-    onValid();
+  const validate = (onValid) => {
+    switch (currSteps) {
+      case 0: {
+        if (bookingDetails.orders.filter((order) => !order.chef).length == 0) {
+          onValid();
+        } else {
+          alert("Please Choose Chefs for all Products");
+        }
+        break;
+      }
+      case 1: {
+        if (!bookingDetails.phone) {
+          alert("Please Enter Mobile number");
+        } else if (bookingDetails.tables.length === 0) {
+          alert("Please Choose a Table");
+        } else {
+          onValid();
+        }
+        break;
+      }
+      default:
+        onValid();
+    }
   };
 
   const prevStep = () => {

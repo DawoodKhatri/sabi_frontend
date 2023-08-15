@@ -33,9 +33,13 @@ import BookingChefSelection from "./booking/chefSelection";
 import BookingDetailsAndTable from "./booking/detailsAndTable";
 import BookingConfirmDetails from "./booking/confirmDetails";
 
-//Dashboard
+//Customer Dashboard
 import CustomerDashboard from "./customerDashboard/dashboard";
+
+//Restaurant Dashboard
 import RestaurantDashboard from "./restaurantDashboard/dashboard";
+import RestaurantDashboardRestaurants from "./restaurantDashboard/restaurants";
+import RestaurantDashboardBookings from "./restaurantDashboard/bookings";
 
 export {
   Loading,
@@ -61,4 +65,6 @@ export {
   BookingConfirmDetails,
   CustomerDashboard,
   RestaurantDashboard,
+  RestaurantDashboardRestaurants,
+  RestaurantDashboardBookings,
 };
