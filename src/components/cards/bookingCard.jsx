@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../../styles/cards.module.css";
 import httpRequest from "../../utils/request";
+import Rating from "react-rating";
 
 const BookingCard = ({
   _id,
@@ -15,6 +16,7 @@ const BookingCard = ({
   total_bill,
   advance_payment,
   type,
+  rating,
   change,
   setChange,
 }) => {
@@ -83,6 +85,19 @@ const BookingCard = ({
     );
   };
 
+  const rateExperience = (value) => {
+    httpRequest(`/api/booking/rateExperience`, "POST", {
+      bookingId: _id,
+      rating: value !== rating ? value : 0,
+    }).then((response) => {
+      if (response.success) {
+        setChange(!change);
+      } else {
+        alert(response.message);
+      }
+    });
+  };
+
   const getBookingStatusClass = () => {
     if (status === "Pending") return "bg-orange";
     if (status === "Rejected") return "bg-red";
@@ -95,13 +110,8 @@ const BookingCard = ({
       <div
         className={`${styles.card} accordion-item rounded rounded-4 mx-3 my-5`}
       >
-        <div class="accordion-header">
-          <button
-            class="accordion-button rounded rounded-4 px-5 text-purple"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target={`#booking_card_id_${_id}`}
-          >
+        <div class="accordion-header d-flex px-4 py-4 rounded rounded-4 text-purple align-items-center">
+          <div class="flex-grow-1 d-flex align-items-center">
             <div className="col-3">
               {type === "customer" ? (
                 <img
@@ -153,51 +163,87 @@ const BookingCard = ({
                   </p>
                 </div>
               </div>
-              {type === "customer" ? (
-                <div className="text-end mx-4">
-                  status === "Pending" && (
-                  <button
-                    className="btn btn-red btn-sm text-white mx-4"
-                    onClick={cancelBooking}
-                  >
-                    <i className="bi bi-x-lg px-1" />
-                    Cancel
-                  </button>
-                  )
-                </div>
-              ) : (
-                <div className="text-end mx-4">
-                  {status === "Pending" && (
-                    <>
+              <div className="text-center mx-4">
+                {type === "customer" ? (
+                  <>
+                    {status === "Pending" && (
                       <button
-                        className="btn btn-red btn-sm text-white"
-                        onClick={rejectBooking}
+                        className="btn btn-red btn-sm text-white mx-4"
+                        onClick={cancelBooking}
                       >
                         <i className="bi bi-x-lg px-1" />
-                        Reject
+                        Cancel
                       </button>
+                    )}
+                    {status === "Completed" && (
+                      <div className="d-flex flex-row justify-content-center align-items-center">
+                        <p className="px-3 m-0 mt-2 fw-bold">
+                          {rating
+                            ? "You Rated:"
+                            : "Please rate your experience:"}
+                        </p>
+                        <Rating
+                          emptySymbol="bi bi-star fs-4 mx-2 text-yellow"
+                          fullSymbol="bi bi-star-fill fs-4 mx-2 text-yellow"
+                          onClick={rateExperience}
+                          initialRating={rating}
+                        />
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    {status === "Pending" && (
+                      <>
+                        <button
+                          className="btn btn-red btn-sm text-white"
+                          onClick={rejectBooking}
+                        >
+                          <i className="bi bi-x-lg px-1" />
+                          Reject
+                        </button>
+                        <button
+                          className="btn btn-yellow btn-sm text-white mx-4"
+                          onClick={confirmBooking}
+                        >
+                          <i className="bi bi-check2 px-1" />
+                          Accept
+                        </button>
+                      </>
+                    )}
+                    {status === "Confirmed" && (
                       <button
-                        className="btn btn-yellow btn-sm text-white mx-4"
-                        onClick={confirmBooking}
+                        className="btn btn-green btn-sm text-white mx-4"
+                        onClick={completeBooking}
                       >
                         <i className="bi bi-check2 px-1" />
-                        Accept
+                        Complete
                       </button>
-                    </>
-                  )}
-                  {status === "Confirmed" && (
-                    <button
-                      className="btn btn-green btn-sm text-white mx-4"
-                      onClick={completeBooking}
-                    >
-                      <i className="bi bi-check2 px-1" />
-                      Complete
-                    </button>
-                  )}
-                </div>
-              )}
+                    )}
+                    {status === "Completed" && rating ? (
+                      <div className="d-flex flex-row justify-content-center align-items-center">
+                        <p className="px-3 m-0 mt-2 fw-bold">Customer Rated:</p>
+                        <Rating
+                          emptySymbol="bi bi-star fs-4 mx-2 text-yellow"
+                          fullSymbol="bi bi-star-fill fs-4 mx-2 text-yellow"
+                          initialRating={rating}
+                          readonly
+                        />
+                      </div>
+                    ) : (
+                      <></>
+                    )}
+                  </>
+                )}
+              </div>
             </div>
-          </button>
+          </div>
+          <div
+            class="w-auto accordion-button p-3 text-purple shadow-none"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target={`#booking_card_id_${_id}`}
+          />
         </div>
         <div
           id={`booking_card_id_${_id}`}
