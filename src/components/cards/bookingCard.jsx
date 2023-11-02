@@ -71,6 +71,25 @@ const BookingCard = ({
     );
   };
 
+  const completeBooking = () => {
+    httpRequest(`/api/booking/completeBooking/${_id}`, "POST").then(
+      (response) => {
+        if (response.success) {
+          setChange(!change);
+        } else {
+          alert(response.message);
+        }
+      }
+    );
+  };
+
+  const getBookingStatusClass = () => {
+    if (status === "Pending") return "bg-orange";
+    if (status === "Rejected") return "bg-red";
+    if (status === "Confirmed") return "bg-yellow";
+    if (status === "Completed") return "bg-green";
+  };
+
   return (
     <>
       <div
@@ -126,27 +145,29 @@ const BookingCard = ({
                   </p>
                   <p>
                     Status:{" "}
-                    <span className="bg-orange text-white px-2 rounded">
+                    <span
+                      className={`${getBookingStatusClass()} text-white px-2 rounded`}
+                    >
                       {status}
                     </span>
                   </p>
                 </div>
               </div>
-              {status === "Pending"   && (
+              {type === "customer" ? (
                 <div className="text-end mx-4">
-                  {type === "customer" ? (
-                    <>
-                      {
-                        <button
-                          className="btn btn-red btn-sm text-white mx-4"
-                          onClick={cancelBooking}
-                        >
-                          <i className="bi bi-x-lg px-1" />
-                          Cancel
-                        </button>
-                      }
-                    </>
-                  ) : (
+                  status === "Pending" && (
+                  <button
+                    className="btn btn-red btn-sm text-white mx-4"
+                    onClick={cancelBooking}
+                  >
+                    <i className="bi bi-x-lg px-1" />
+                    Cancel
+                  </button>
+                  )
+                </div>
+              ) : (
+                <div className="text-end mx-4">
+                  {status === "Pending" && (
                     <>
                       <button
                         className="btn btn-red btn-sm text-white"
@@ -156,13 +177,22 @@ const BookingCard = ({
                         Reject
                       </button>
                       <button
-                        className="btn btn-green btn-sm text-white mx-4"
+                        className="btn btn-yellow btn-sm text-white mx-4"
                         onClick={confirmBooking}
                       >
                         <i className="bi bi-check2 px-1" />
                         Accept
                       </button>
                     </>
+                  )}
+                  {status === "Confirmed" && (
+                    <button
+                      className="btn btn-green btn-sm text-white mx-4"
+                      onClick={completeBooking}
+                    >
+                      <i className="bi bi-check2 px-1" />
+                      Complete
+                    </button>
                   )}
                 </div>
               )}
